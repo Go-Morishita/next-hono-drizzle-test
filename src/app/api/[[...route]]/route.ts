@@ -10,6 +10,10 @@ export const runtime = "nodejs";
 
 const app = new Hono().basePath("/api");
 
+app.get('/env', (c) => {
+  return c.json({ nodeEnv: process.env.NODE_ENV || 'development' });
+});
+
 app.get('/health', (c) => {
   return c.json({ status: 'ok' });
 });
