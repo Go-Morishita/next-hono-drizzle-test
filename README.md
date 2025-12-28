@@ -22,3 +22,7 @@ docker compose exec -T db psql -U postgres app_db < backup/backup_20251228_18522
 ```
 docker compose exec web pnpm db:migrate
 ```
+
+# Problems
+
+At the deployment environment, aplication can not get environment value. However, it can be available at build stage.
