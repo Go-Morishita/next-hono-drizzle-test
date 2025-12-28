@@ -10,10 +10,18 @@ services:
       - .env
     environment:
       - NODE_ENV=development
+      - WATCHPACK_POLLING=true
+      - CHOKIDAR_USEPOLLING=true
     depends_on:
       - db
     networks:
       - app-network
+    volumes:
+      - .:/app
+      - web-node-modules:/app/node_modules
+      - web-pnpm-store:/pnpm/store
+    command: ["pnpm", "dev", "--hostname", "0.0.0.0", "--port", "3000"]
+
   db:
     image: postgres:16
     restart: unless-stopped
@@ -27,8 +35,11 @@ services:
       - "5432:5432"
     networks:
       - app-network
+
 volumes:
   postgres-data:
+  web-node-modules:
+  web-pnpm-store:
 
 networks:
   app-network:
