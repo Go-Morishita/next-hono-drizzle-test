@@ -40,6 +40,24 @@ app.post('/todos', async (c) => {
   return c.json(inserted[0]);
 });
 
+app.put('/todos/:id/done', async (c) => {
+  const id = Number(c.req.param("id"));
+  await db.update(todos).set({ done: true }).where(eq(todos.id, id));
+  return c.json({ success: true });
+});
+
+app.put('/todos/:id/undone', async (c) => {
+  const id = Number(c.req.param("id"));
+  await db.update(todos).set({ done: false }).where(eq(todos.id, id));
+  return c.json({ success: true });
+});
+
+app.delete('/todos/:id', async (c) => {
+  const id = Number(c.req.param("id"));
+  await db.delete(todos).where(eq(todos.id, id));
+  return c.json({ success: true });
+});
+
 export const GET = handle(app);
 export const POST = handle(app);
 export const PUT = handle(app);
