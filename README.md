@@ -1,3 +1,12 @@
+# Docker up down
+```
+docker compose up -d
+```
+
+```
+docker compose down -v
+```
+
 # DB backup
 
 ```
@@ -6,4 +15,10 @@ docker compose exec db pg_dump -U postgres app_db > backup/backup_$(date +%Y%m%d
 
 ```
 docker compose exec -T db psql -U postgres app_db < backup/backup_20251228_185228.sql
+```
+
+# DB Migration
+
+```
+docker compose exec web pnpm db:migrate
 ```
