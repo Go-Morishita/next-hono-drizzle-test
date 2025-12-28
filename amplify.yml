@@ -9,6 +9,12 @@ frontend:
         - pnpm install --frozen-lockfile
     build:
       commands:
+        - |
+          if [ -z "$DATABASE_URL" ]; then
+            echo "DATABASE_URL is not set. Configure it in Amplify environment variables so migrations can run."
+            exit 1
+          fi
+        - pnpm db:migrate
         - pnpm run build
   artifacts:
     baseDirectory: .next
