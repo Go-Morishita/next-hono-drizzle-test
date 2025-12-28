@@ -6,10 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate"
   },
   "dependencies": {
     "@hono/node-server": "^1.19.7",
+    "dotenv": "^16.4.5",
     "drizzle-orm": "^0.40.0",
     "hono": "^4.7.2",
     "next": "16.1.1",
