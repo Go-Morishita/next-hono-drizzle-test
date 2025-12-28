@@ -11,7 +11,10 @@ export const runtime = "nodejs";
 const app = new Hono().basePath("/api");
 
 app.get('/env', (c) => {
-  return c.json({ hasDatabaseURL: !!process.env.DATABASE_URL });
+  return c.json({ 
+    hasDatabaseURL: !!process.env.DATABASE_URL,
+    nodeEnv: process.env.NODE_ENV??null
+  });
 });
 
 app.get('/health', (c) => {
